@@ -1,0 +1,55 @@
+body {
+  padding-top: 5rem;
+}
+
+.principal-text {
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+}
+
+#art {
+  display: table;
+  border-spacing: 1px;
+  background-color: black;
+}
+
+.pixel {
+  display: table-cell;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+}
+
+.red-div {
+  background-color: red;
+}
+
+.yellow-div {
+  background-color: yellow;
+}
+
+.black-div {
+  background-color: black;
+}
+
+.green-div {
+  background-color: green;
+}
+
+.blue-div {
+  background-color: blue;
+}
+
+.extra-info {
+  font-size: 10px;
+  text-align: right;
+  display: none;
+}
+
+.pixel:hover .extra-info {
+  display: block;
+}
+
+.special-padding {
+  padding: 10px 0;
+}
