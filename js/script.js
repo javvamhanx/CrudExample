@@ -1,17 +1,16 @@
 var fakeDB = [];
-var baseJson = { "color": 0, "name": "" };
+var pixelJson = { "color": 0, "name": "" };
 var currentY = 0;
 var currentX = 0;
+var currentPixel;
 
 var colorOptions = ["", "red-div", "yellow-div", "black-div", "green-div", "blue-div"];
 
 function createData() {
-  fakeDB = Array(10).fill(Array(10).fill(0).map(y => baseJson));
-  console.log(fakeDB);
+  fakeDB = Array(10).fill(Array(10).fill(undefined));
 }
 
 createData();
-
 
 document.querySelectorAll("#art .row").forEach((item) => {
   item.setAttribute("style", "display: table-row;");
@@ -26,12 +25,11 @@ function removeAllColors() {
       item.classList.remove("green-div");
       item.classList.remove("blue-div");
     });
+    createData();
   }
 }
 
 function removeColor(element) {
-  console.log(FindColPos(element.parentElement.parentElement));
-  console.log(FindRowPos(element.parentElement.parentElement));
   element.parentElement.parentElement.classList.remove("red-div");
   element.parentElement.parentElement.classList.remove("yellow-div");
   element.parentElement.parentElement.classList.remove("black-div");
@@ -66,68 +64,112 @@ function FindRowPos(element) {
 }
 
 function editColor(element) {
-  console.log("color edited");
-}
-
-function viewColor(element) {
-  currentX = FindColPos(element.parentElement.parentElement);
-  currentY = FindRowPos(element.parentElement.parentElement);
-
-  let currentValue = fakeDB[currentX][currentY];
-  var picture = document.querySelector("#viewPictureStyle");
-  if (currentvalue && currentValue != baseJson) {
-    backgroundChange(picture, currentValue.color);
-    document.querySelector("#pixelName").value = currentValue.name;
-    document.querySelector("#pixelColor").value = colorOptions[currentValue.color].split('-')[0];
-  }
-  else {
-    backgroundChange(picture, -1);
-  }
+  readPixel(element, 1);
+  currentPixel = element;
 }
 
 function changePicture() {
-  var selectedColor = document.querySelector("#colorSelect").selectedIndex;
-  switch (selectedColor) {
-    case 0:
-      document.querySelector(".picture-style").style.backgroundColor = "red";
-      break;
-    case 1:
-      document.querySelector(".picture-style").style.backgroundColor = "yellow";
-      break;
-    case 2:
-      document.querySelector(".picture-style").style.backgroundColor = "black";
-      break;
-    case 3:
-      document.querySelector(".picture-style").style.backgroundColor = "green";
-      break;
-    case 4:
-      document.querySelector(".picture-style").style.backgroundColor = "blue";
-      break;
-    default:
-      document.querySelector(".picture-style").style.backgroundColor = "white";
-      break;
-  }
+  var selectedColor = document.querySelector("#editPixelColor").selectedIndex;
+  backgroundChange(document.querySelector(".picture-style"), selectedColor);
 }
 
 function backgroundChange(element, colorIndex) {
   switch (colorIndex) {
-    case 0:
+    case 1:
       element.style.backgroundColor = "red";
       break;
-    case 1:
+    case 2:
       element.style.backgroundColor = "yellow";
       break;
-    case 2:
+    case 3:
       element.style.backgroundColor = "black";
       break;
-    case 3:
+    case 4:
       element.style.backgroundColor = "green";
       break;
-    case 4:
+    case 5:
       element.style.backgroundColor = "blue";
       break;
     default:
       element.style.backgroundColor = "white";
       break;
-  } 
+  }
+}
+
+function pixelBkgdChange(element, colorIndex) {
+  removeColor(element);
+  switch (colorIndex) {
+    case 1:
+      element.parentElement.parentElement.classList.add("red-div");
+      break;
+    case 2:
+      element.parentElement.parentElement.classList.add("yellow-div");
+      break;
+    case 3:
+      element.parentElement.parentElement.classList.add("black-div");
+      break;
+    case 4:
+      element.parentElement.parentElement.classList.add("green-div");
+      break;
+    case 5:
+      element.parentElement.parentElement.classList.add("blue-div");
+      break;
+    default:
+      break;
+  }
+}
+
+function savePixel() {
+  if (fakeDB[currentX][currentY])
+    updatePixel();
+  else
+    createPixel();
+}
+
+// CRUD methods (Create, Read, Update, Delete)
+
+function createPixel() {
+  fakeDB[currentX][currentY] = { "color": 0, "name": "" };
+  updatePixel();
+}
+
+function readPixel(element, modalType) {
+  currentX = FindColPos(element.parentElement.parentElement);
+  currentY = FindRowPos(element.parentElement.parentElement);
+
+  let currentValue = fakeDB[currentX][currentY];
+  var picture = modalType == 1 ? document.querySelector("#editPictureStyle") : document.querySelector("#viewPictureStyle");
+  if (currentValue && currentValue != pixelJson) {
+    backgroundChange(picture, currentValue.color);
+    if (modalType == 1) {
+      document.querySelector("#editPixelName").value = currentValue.name;
+      document.querySelector("#editPixelColor").selectedIndex = currentValue.color;
+    } else {
+      document.querySelector("#pixelName").value = currentValue.name;
+      document.querySelector("#pixelColor").value = colorOptions[currentValue.color].split('-')[0];
+    }
+  }
+  else {
+    backgroundChange(picture, -1);
+    if (modalType == 1) {
+      document.querySelector("#editPixelColor").selectedIndex = 0;
+      document.querySelector("#editPixelName").value = "";
+    } else {
+      document.querySelector("#pixelName").value = "";
+      document.querySelector("#pixelColor").value = "";
+    }
+
+  }
+}
+
+function updatePixel() {
+  let currentValue = fakeDB[currentX][currentY];
+  currentValue.name = document.querySelector("#editPixelName").value;
+  currentValue.color = document.querySelector("#editPixelColor").selectedIndex;
+  pixelBkgdChange(currentPixel, currentValue.color)
+}
+
+function deletePixel(element) {
+  removeColor(element);
+  fakeDB[currentX][currentY] = undefined;
 }

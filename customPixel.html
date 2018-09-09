@@ -57,11 +57,11 @@
     </div>
 
     
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Edit the current Pixel</h5>
+              <h5 class="modal-title" id="editModalLabel">Edit the current Pixel</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -69,16 +69,17 @@
             <div class="container-fluid modal-body">              
               <div class="row">
                   <div class="col-xs-2 p-1">
-                    <div class="picture-style"></div>
+                    <div id="editPictureStyle" class="picture-style"></div>
                   </div>
                   <div class="col-xs-10 p-1">
                     <div>
                       <label class="d-inline">Pixel Name:</label>
-                      <input type="text" class="d-inline" placeholder="Pixel name">
+                      <input id="editPixelName" type="text" class="d-inline" placeholder="Pixel name">
                     </div>
                     <div>
                       <label class="d-inline">Pixel Color:</label>
-                      <select class="d-inline m-1" onchange="changePicture()" id="colorSelect">
+                      <select id="editPixelColor" class="d-inline m-1" onchange="changePicture()" id="colorSelect">
+                        <option disabled selected value> - Select an option - </option>
                         <option>Red</option>
                         <option>Yellow</option>
                         <option>Black</option>
@@ -91,7 +92,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="savePixel()">Save</button>
             </div>
           </div>
         </div>
@@ -103,128 +104,722 @@
           <div class="row">
             <div class="pixel align-bottom">
               <div class="extra-info">
-                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="viewColor(this)"></span>
-                <span class="fa fa-edit" data-toggle="modal" data-target="#exampleModal" onclick="editColor(this)"></span>
-                <span class="fa fa-times text-danger" onclick="removeColor(this)"></span>
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
               </div>
             </div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
           <div class="row">
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
-            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="readPixel(this, 2)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#editModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="deletePixel(this)"></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -289,8 +884,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
+  <!-- Bootstrap core JavaScript -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src="./js/jquery-3.3.1.slim.min.js"></script>
   <script src="./js/popper.min.js"></script>
