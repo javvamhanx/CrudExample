@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Exaple of CRUD using a pixel table">
+  <meta name="keywords" content="pixel, pokemon, pokeball, crud">
+  <meta name="author" content="Pietro Nadalini">
+  <link rel="icon" href="./img/favicon.ico">
+
+  <title>Pixel Designer</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="./css/style.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="./index.html">Pixel Designer</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#defaultNavBar" aria-controls="defaultNavBar"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="defaultNavBar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html#">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="./customPixel.html">Create your own</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main role="main" class="container">
+    <!-- <div class="row d-flex justify-content-center">
+      <div class="col-sm-6 text-center">
+        <span class="btn fa fa-edit" style="font-size: 32px;" data-toggle="tooltip" title="Edit"></span>
+        <span class="btn fa fa-times text-danger" style="font-size: 32px;" data-toggle="tooltip" title="Delete"></span>
+      </div>
+    </div> -->
+
+    <div class="principal-text">
+      <h3>Pixel Designer</h3>
+      <p>Click on the element where you want to add a custom color.</p>
+    </div>
+
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit the current Pixel</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="container-fluid modal-body">              
+              <div class="row">
+                  <div class="col-xs-2 p-1">
+                    <div class="picture-style"></div>
+                  </div>
+                  <div class="col-xs-10 p-1">
+                    <div>
+                      <label class="d-inline">Pixel Name:</label>
+                      <input type="text" class="d-inline" placeholder="Pixel name">
+                    </div>
+                    <div>
+                      <label class="d-inline">Pixel Color:</label>
+                      <select class="d-inline m-1" onchange="changePicture()" id="colorSelect">
+                        <option>Red</option>
+                        <option>Yellow</option>
+                        <option>Black</option>
+                        <option>Green</option>
+                        <option>Blue</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-sm-6 d-flex justify-content-center">
+        <div class="row" id="art">
+          <div class="row">
+            <div class="pixel align-bottom">
+              <div class="extra-info">
+                <span class="fa fa-eye text-info" data-toggle="modal" data-target="#viewModal" onclick="viewColor(this)"></span>
+                <span class="fa fa-edit" data-toggle="modal" data-target="#exampleModal" onclick="editColor(this)"></span>
+                <span class="fa fa-times text-danger" onclick="removeColor(this)"></span>
+              </div>
+            </div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+          <div class="row">
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+          <div class="row">
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+          <div class="row">
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+          <div class="row">
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+          <div class="row">
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+          <div class="row">
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+          <div class="row">
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+          <div class="row">
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+          <div class="row">
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+            <div class="pixel" onclick="editColor(this)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewModalLabel">Infomation about the current pixel</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="container-fluid modal-body">              
+              <div class="row">
+                  <div class="col-xs-2 p-1">
+                    <div id="viewPictureStyle" class="picture-style"></div>
+                  </div>
+                  <div class="col-xs-10 p-1">
+                    <div>
+                      <label class="d-inline">Pixel Name:</label>
+                      <input type="text" class="d-inline" disabled id="pixelName">
+                    </div>
+                    <div>
+                      <label class="d-inline">Pixel Color:</label>
+                      <input type="text" class="d-inline m-1" disabled id="pixelColor">
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <div class="row d-flex justify-content-center special-padding">
+      <button class="btn btn-sm btn-primary" onclick="removeAllColors()">Delete all</button>
+    </div>
+
+  </main><!-- /.container -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="list-unstyled list-inline">
+            <li class="list-inline-item"><a href="https://github.com/pnadalini/HTML5_Test">GitHub</a></li>
+            <li class="list-inline-item"><a href="https://stackoverflow.com/users/9801177/pnadalini">StackOverflow</a></li>
+          </ul>
+          <p>Made by <a href="https://www.linkedin.com/in/pietro-nadalini-023900147/">Pietro Nadalini</a>.</p>
+        </div>
+        <div class="col-md-6 align-bottom">
+          <p>Credits:</p>
+          <a href="https://trinket.io/html/0e102a306b"> Trinket</a>,&nbsp;
+          <a href="https://getbootstrap.com/"> Bootstrap 4</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="./js/jquery-3.3.1.slim.min.js"></script>
+  <script src="./js/popper.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+  <!-- Created script -->
+  <script src="./js/script.js"></script>
+
+</body>
+
+</html>
